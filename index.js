@@ -12,8 +12,11 @@ app.use(bodyParser.json());
 
 const url='mongodb+srv://knyhago:kenny@cluster0.2kzve.mongodb.net/?retryWrites=true&w=majority';
 
-const port=8090;
+const port=process.env.PORT||8090;
 
+app.get('/',(req,res)=>{
+    res.send('health ok')
+})
 
 app.get('/get',async(req,res)=>{
     BookModel.find().sort({"_id":1}).limit(2)
